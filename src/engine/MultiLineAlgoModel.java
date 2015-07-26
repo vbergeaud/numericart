@@ -22,6 +22,11 @@ public class MultiLineAlgoModel extends AAlgoModel {
 	{
 		set_current_line(i);
 	}
+	public void deleteLine(int i)
+	{
+		_lines.remove(i);
+		notifyObserver("go");
+	}
 	public void setAngle(double a)
 	{
 		_lines.get(get_current_line()).setAngle(a);

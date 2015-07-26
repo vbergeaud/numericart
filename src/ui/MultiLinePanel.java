@@ -59,11 +59,14 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		_list.setVisibleRowCount(10);
 		_list.setAutoscrolls(true);
 		_list.setPreferredSize(new Dimension(200,400));
-		_list.addListSelectionListener(new ListSelectionListener(){
-
+		ListSelectionModel lsm=_list.getSelectionModel();
+		lsm.addListSelectionListener(new ListSelectionListener(){
+		
 		@Override
 		public void valueChanged(ListSelectionEvent arg0) {
-			mlam.setCurrentLine(arg0.getFirstIndex());
+			ListSelectionModel lsm=(ListSelectionModel)arg0.getSource();
+			mlam.setCurrentLine(lsm.getMinSelectionIndex());
+			System.out.println("value in multiline list : "+Integer.toString(arg0.getFirstIndex()));
 			
 		}
 		});
@@ -79,6 +82,12 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 			
 		});
 		_del_button = new JButton("del");
+		_del_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				_mlpc.deleteCurrentLine();
+			}
+		
+		});
 		Box button_box=Box.createVerticalBox();
 		button_box.add(_add_button);
 		button_box.add(_del_button);
@@ -146,7 +155,7 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		{
 			_listmodel.addElement(mlam.getCurrentLine());
 		}
-	 System.out.println(Integer(mlam.get_current_line()).toString());
+	 System.out.println(Integer.toString(mlam.get_current_line()));
 		repaint();
 
 	}
