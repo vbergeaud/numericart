@@ -3,7 +3,7 @@ package engine;
 import java.util.ArrayList;
 
 
-public class MultiLineAlgoModel extends AAlgoModel {
+public class MultiLineAlgoModel extends AAlgoModel{
 
 	ArrayList<Line> _lines;
 	private int _current_line;
@@ -24,8 +24,8 @@ public class MultiLineAlgoModel extends AAlgoModel {
 	}
 	public void deleteLine(int i)
 	{
-		_lines.remove(i);
-		notifyObserver("go");
+		_lines.remove(i);	
+		notifyObserver("deleted"+Integer.toString(i));
 	}
 	public void setAngle(double a)
 	{

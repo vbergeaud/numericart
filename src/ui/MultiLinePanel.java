@@ -28,6 +28,7 @@ import engine.Observer;
 
 public class MultiLinePanel extends AParameterPanel implements Observer{
 
+	private static final long serialVersionUID = -7353058491286014100L;
 	JList<Line> _list;
 	JButton _add_button;
 	JButton _del_button;
@@ -146,15 +147,22 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		String command =(String)obj;
 		MultiLineAlgoModel mlam=(MultiLineAlgoModel)_model;
 		_list.setSelectedIndex(mlam.get_current_line());
-		if (command=="changed"||command=="newLine")
+		if (command.equals("changed")||command.equals("newLine"))
 		{
 			_angle.setText(Double.toString(mlam.getCurrentLine().getAngle()));
 	
 		}
-	 if (command=="newLine")
+	 if (command.equals("newLine"))
 		{
 			_listmodel.addElement(mlam.getCurrentLine());
 		}
+	 if (command.length()>=8 && command.substring(0,7).equals("deleted"))
+	 {
+		 int line = Integer.parseInt(command.substring(7));
+		 _listmodel.remove(line);
+		 _list.repaint();
+		 //_list.validate();
+	 }
 	 System.out.println(Integer.toString(mlam.get_current_line()));
 		repaint();
 
