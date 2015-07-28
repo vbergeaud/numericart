@@ -98,8 +98,17 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		lb.add(button_box);
 
 		_angle=new JTextField("0.0");
+		_angle.setPreferredSize(new Dimension(50,30));
+		_angle.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent a){
+			String text = _angle.getText();
+			_mlpc.setAngle(Double.parseDouble(text));
+		}
+		});
 		_x=new JTextField("0.0");
+		_x.setPreferredSize(new Dimension(50,30));
 		_y=new JTextField("0.0");
+		_y.setPreferredSize(new Dimension(50,30));
 		//		_separation=new JTextField("0.0");
 		_angleslider=new JSlider();
 		_angleslider.setMaximum(90);
@@ -107,6 +116,7 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		_angleslider.setValue(0);
 		_angleslider.setPaintTicks(true);
 		_angleslider.setMajorTickSpacing(10);
+		_angleslider.setPreferredSize(new Dimension(180,40));
 		_angleslider.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent event)
 			{
@@ -119,6 +129,7 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		_spacingslider.setMinimum(10);
 		_spacingslider.setValue(50);
 		_spacingslider.setPaintTicks(true);
+		_spacingslider.setPreferredSize(new Dimension(180,40));
 		_spacingslider.setMajorTickSpacing(10);
 		_spacingslider.addChangeListener(new ChangeListener(){
 			public void stateChanged(ChangeEvent event)
@@ -150,6 +161,7 @@ public class MultiLinePanel extends AParameterPanel implements Observer{
 		if (command.equals("changed")||command.equals("newLine"))
 		{
 			_angle.setText(Double.toString(mlam.getCurrentLine().getAngle()));
+			_angle.repaint();
 	
 		}
 	 if (command.equals("newLine"))

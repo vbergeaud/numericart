@@ -30,7 +30,7 @@ public class MultiLineAlgoModel extends AAlgoModel{
 	public void setAngle(double a)
 	{
 		_lines.get(get_current_line()).setAngle(a);
-		notifyObserver("go");
+		notifyObserver("changed");
 	}
 	public void setSpacing(double s)
 	{
