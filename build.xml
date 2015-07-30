@@ -52,6 +52,14 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="LineTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.LineTest" todir="${junit.output.dir}"/>
+            <classpath refid="Numericart.classpath"/>
+        </junit>
+    </target>
     <target name="MainWindow">
         <java classname="ui.MainWindow" failonerror="true" fork="yes">
             <classpath refid="Numericart.classpath"/>
@@ -62,11 +70,11 @@
             <classpath refid="Numericart.classpath"/>
         </java>
     </target>
-    <target name="LineTest">
+    <target name="TestLine">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="test.LineTest" todir="${junit.output.dir}"/>
+            <test name="test.TestLine" todir="${junit.output.dir}"/>
             <classpath refid="Numericart.classpath"/>
         </junit>
     </target>
