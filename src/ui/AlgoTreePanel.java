@@ -25,6 +25,10 @@ import engine.Observer;
 //classe permettant l'affichage de l'arbre des algos
 //Deux boutons en tête d'arbre  : new et delete
 public class AlgoTreePanel extends JPanel implements Observer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JButton _new;
 	JButton _delete;
 	JTree _tree;

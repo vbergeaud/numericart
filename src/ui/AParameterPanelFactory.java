@@ -2,7 +2,6 @@ package ui;
 
 import engine.AImageAlgo;
 import engine.FractalPanelControler;
-import engine.JuliaFractalAlgo;
 import engine.JuliaFractalAlgoModel;
 import engine.MultiLineAlgoModel;
 import engine.MultiLinePanelController;

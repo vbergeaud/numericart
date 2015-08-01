@@ -1,6 +1,5 @@
 package engine;
 
-import java.util.ArrayList;
 
 import engine.AImageAlgo.AlgoType;
 

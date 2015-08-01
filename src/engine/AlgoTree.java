@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class AlgoTree extends ArrayList<AImageAlgo> implements IObservable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static AlgoTree _at=null;
 	private AlgoTree(){}
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();

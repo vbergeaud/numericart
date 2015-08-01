@@ -1,13 +1,9 @@
 package engine;
 
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.DataBufferInt;
-import java.awt.image.WritableRaster;
 
-import engine.AImageAlgo.AlgoType;
+import java.awt.image.BufferedImage;
+
+
 
 public class FractalPictureMaker extends AFractalPictureMaker implements PictureMaker {
 

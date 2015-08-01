@@ -5,7 +5,11 @@ import javax.swing.JPanel;
 import engine.AAlgoModel;
 
 public abstract class AParameterPanel extends JPanel {
-  AAlgoModel _model;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+AAlgoModel _model;
   
   AParameterPanel (AAlgoModel model)
   {
