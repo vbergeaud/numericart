@@ -1,5 +1,7 @@
 package engine;
 
+import java.io.File;
+
 public class AlgoTreeController {
 	AlgoTree _at;
 	
@@ -15,5 +17,11 @@ public class AlgoTreeController {
 			if (aia==_at.get(i))
 				_at.setCurrentId(i);
 		}
+	}
+	
+	public void performSave(File file)
+	{
+		if (file==null) return;
+		else _at.performSave(file);
 	}
 };

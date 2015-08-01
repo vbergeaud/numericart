@@ -3,29 +3,26 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.JSplitPane;
 
 import engine.AImageAlgo;
 import engine.AlgoTree;
 import engine.AlgoTreeController;
-import engine.FractalPanelControler;
-import engine.FractalPictureMaker;
+
 import engine.ImageAlgoFactory;
-import engine.JuliaFractalAlgoModel;
-import engine.AAlgoModel;
-import engine.MultiLineAlgoModel;
+
 import engine.Observer;
 
 public class MainWindow extends JFrame implements Observer{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ScreenviewPanel _sp;
 	AParameterPanel _apa;
 	AlgoTreePanel _atp;

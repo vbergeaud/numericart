@@ -50,4 +50,8 @@ public abstract class AImageAlgo {
 		bi.setData(r);return bi;
 	}
 
+	public  void modifyZoom(int notches, double lx, double ly)
+	{
+		_model.zoom(notches,lx,ly);
+	}
 }

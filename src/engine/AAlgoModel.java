@@ -26,6 +26,20 @@ public abstract class AAlgoModel extends AObservable {
 		_ymin=model._ymin;
 		_ymax=model._ymax;
 	}
+	
+	void zoom(int notches, double lx, double ly)
+	{
+		double zoom=((double) (100+5*notches))/100.;
+		if (zoom <0.5) zoom=0.5;
+		if (zoom > 2.0) zoom=2;
+		double xav=_xmin+(_xmax-_xmin)*lx;
+		double yav=_ymin+(_ymax-_ymin)*ly;
+		_xmin=xav+(_xmin-xav)*zoom;
+		_xmax=xav+(_xmax-xav)*zoom;
+		_ymin=yav+(_ymin-yav)*zoom;
+		_ymax=yav+(_ymax-yav)*zoom;
+		this.notifyObserver("zoom");
+	}
 
 	/*public void addObserver(Observer obs)
 	{

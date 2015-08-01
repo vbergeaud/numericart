@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -29,8 +31,6 @@ public class AlgoTreePanel extends JPanel implements Observer{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JButton _new;
-	JButton _delete;
 	JTree _tree;
 	DefaultTreeModel _model;
 	JScrollPane _jsp;
@@ -44,7 +44,7 @@ public class AlgoTreePanel extends JPanel implements Observer{
 		//sous-panneau boutons
 		JPanel button_panel = new JPanel();
 		button_panel.setPreferredSize(new Dimension(200,40));
-		JButton add_button=new JButton("add Julia");
+		JButton add_button=new JButton("Add Julia");
 		button_panel.add(add_button);
 		add_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -52,14 +52,29 @@ public class AlgoTreePanel extends JPanel implements Observer{
 				at.create(ImageAlgoFactory.make(AImageAlgo.AlgoType.Julia));
 			}
 		});
-		JButton add_ml_button=new JButton("add MultiLine");
+		JButton add_ml_button=new JButton("Add MultiLine");
 		button_panel.add(add_ml_button);
 		add_ml_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
 			{
 				at.create(ImageAlgoFactory.make(AImageAlgo.AlgoType.MultiLine));
 			}
-		});			
+		});	
+		JButton save_pic_button = new JButton("Save picture");
+		save_pic_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				//Create a file chooser
+				final JFileChooser fc = new JFileChooser();
+			
+				//In response to a button click:
+				int returnVal = fc.showSaveDialog(AlgoTreePanel.this);
+				
+				File file=fc.getSelectedFile();
+				
+				_atc.performSave(file);
+			}
+		});
 		//sous-panneau tree
 		JPanel tree_panel = new JPanel();
 		tree_panel.setPreferredSize(new Dimension(200,180));
@@ -67,7 +82,8 @@ public class AlgoTreePanel extends JPanel implements Observer{
 
 		this.setLayout(new BorderLayout());
 		this.add(button_panel,BorderLayout.NORTH);
-		this.add(tree_panel,BorderLayout.SOUTH);
+		this.add(tree_panel,BorderLayout.CENTER);
+		this.add(save_pic_button,BorderLayout.SOUTH);
 		buildTree();
 		this.setVisible(true);
 	}

@@ -1,6 +1,12 @@
 package engine;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class AlgoTree extends ArrayList<AImageAlgo> implements IObservable{
 
@@ -54,6 +60,16 @@ public class AlgoTree extends ArrayList<AImageAlgo> implements IObservable{
 			obs.update(obj);
 
 	}
-
+public void performSave(File file)
+{
+	
+	try {
+	    // retrieve image
+	    BufferedImage bi = getCurrentAlgo().createImage();
+	    ImageIO.write(bi, "png", file);
+	} catch (IOException e) {
+		JOptionPane.showMessageDialog(null, "error writing file!");
+	}
+}
 
 }
