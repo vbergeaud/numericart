@@ -5,7 +5,7 @@ public class JuliaFractalAlgoModel extends AAlgoModel {
 	double _real_c;
 	double _imag_c;
 	int      _nb_iter_max;
-	JuliaFractalAlgoModel(double xmin, double xmax, double ymin, double ymax, int nx, int ny, double rc, double ic, int nitermax)
+	public JuliaFractalAlgoModel(double xmin, double xmax, double ymin, double ymax, int nx, int ny, double rc, double ic, int nitermax)
 	{
 		super(nx,ny,xmax,ymax,xmin,ymin);
 		_real_c=rc;

@@ -26,8 +26,9 @@ public abstract class AAlgoModel extends AObservable {
 		_ymin=model._ymin;
 		_ymax=model._ymax;
 	}
+	public double getXmax(){return _xmax;}
 	
-	void zoom(int notches, double lx, double ly)
+	public void zoom(int notches, double lx, double ly)
 	{
 		double zoom=((double) (100+5*notches))/100.;
 		if (zoom <0.5) zoom=0.5;
