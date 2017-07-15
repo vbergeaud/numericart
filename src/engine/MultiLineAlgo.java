@@ -16,16 +16,16 @@ public class MultiLineAlgo extends AImageAlgo {
 	{return AlgoType.MultiLine;}
 
 	@Override
-	int[] computeIntensityArray(){
-		int nx=_model._nx;
-		int ny=_model._ny;
+	byte[] computeIntensityArray(int precision){
+		int nx=_model._nx*precision;
+		int ny=_model._ny*precision;
 		double xmin=_model._xmin;
 		double ymin=_model._ymin;
 		double xmax=_model._xmax;
 		double ymax=_model._ymax;
-		int[] nbiter=new int[nx*ny];
+		byte[] nbiter=new byte[nx*ny];
 		for (int i=0;i<nx*ny;i++)
-			nbiter[i]=255;
+			nbiter[i]=(byte) 255;
 		//double angle=0.0;
 		double x0=0.0;
 		double y0=0.0;
@@ -40,7 +40,7 @@ public class MultiLineAlgo extends AImageAlgo {
 			double at=Math.tan(angle);
 			for (int istep=-nbsteps; istep<nbsteps+1;istep++)
 			{
-				if (at<1.0 && at>-1)
+				if ((at<1.0 && at>-1))
 				{
 				x0=0;
 				y0=Math.sqrt(spacing*spacing/(1-as*as))*(double)istep;
@@ -52,8 +52,8 @@ public class MultiLineAlgo extends AImageAlgo {
 					if (iy*nx+ix-1>=0 && iy*nx+ix+1<nx*ny && iy>=0 && iy<ny)
 					{
 						nbiter[iy*nx+ix]=0;
-						nbiter[iy*nx+ix-1]=128;
-						nbiter[iy*ny+ix+1]=128;
+						nbiter[iy*nx+ix-1]= (byte) Math.min (nbiter[iy*nx+ix-1],(byte) 128);
+						nbiter[iy*ny+ix+1]=(byte)  Math.min (nbiter[iy*nx+ix+1],(byte) 128);
 					}
 				}
 				}
@@ -69,8 +69,8 @@ public class MultiLineAlgo extends AImageAlgo {
 						if ((iy-1)*nx+ix>=0 && (iy+1)*nx+ix<nx*ny && ix>=0 && ix<nx)
 						{
 							nbiter[iy*nx+ix]=0;
-							nbiter[(iy-1)*nx+ix]=128;
-							nbiter[(iy+1)*ny+ix]=128;
+							nbiter[(iy-1)*nx+ix]=(byte) Math.min (nbiter[(iy-1)*nx+ix],(byte) 128);
+							nbiter[(iy+1)*ny+ix]=(byte) Math.min (nbiter[(iy+1)*nx+ix],(byte) 128);
 						}
 					}
 				}

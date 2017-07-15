@@ -15,9 +15,10 @@ public class AlgoTree extends ArrayList<AImageAlgo> implements IObservable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static AlgoTree _at=null;
-	private AlgoTree(){}
 	private ArrayList<Observer> listObserver = new ArrayList<Observer>();
 	int _currentId=0;
+	
+	private AlgoTree(){}
 
 	public static AlgoTree getInstance()
 	{
@@ -34,6 +35,7 @@ public class AlgoTree extends ArrayList<AImageAlgo> implements IObservable{
 		AImageAlgo algo=ImageAlgoFactory.make(a.getType());
 		this.add(algo);
 		notifyObserver(algo);
+		this.setCurrentId(size()-1);
 	}
 	public void changeName(int index, String name)
 	{
@@ -65,7 +67,8 @@ public void performSave(File file)
 	
 	try {
 	    // retrieve image
-	    BufferedImage bi = getCurrentAlgo().createImage();
+		
+	    BufferedImage bi = getCurrentAlgo().createImage(true);
 	    ImageIO.write(bi, "png", file);
 	} catch (IOException e) {
 		JOptionPane.showMessageDialog(null, "error writing file!");

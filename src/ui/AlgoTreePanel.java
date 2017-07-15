@@ -43,7 +43,7 @@ public class AlgoTreePanel extends JPanel implements Observer{
 		// Deux sous-panneaux
 		//sous-panneau boutons
 		JPanel button_panel = new JPanel();
-		button_panel.setPreferredSize(new Dimension(200,40));
+		button_panel.setPreferredSize(new Dimension(StyleSheet.PANEL_WIDTH,40));
 		JButton add_button=new JButton("Add Julia");
 		button_panel.add(add_button);
 		add_button.addActionListener(new ActionListener(){
@@ -58,6 +58,14 @@ public class AlgoTreePanel extends JPanel implements Observer{
 			public void actionPerformed(ActionEvent e)
 			{
 				at.create(ImageAlgoFactory.make(AImageAlgo.AlgoType.MultiLine));
+			}
+		});	
+		JButton add_mb_button=new JButton("Add Mozarab");
+		button_panel.add(add_mb_button);
+		add_mb_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				at.create(ImageAlgoFactory.make(AImageAlgo.AlgoType.MozarabBlender));
 			}
 		});	
 		JButton save_pic_button = new JButton("Save picture");
@@ -77,7 +85,7 @@ public class AlgoTreePanel extends JPanel implements Observer{
 		});
 		//sous-panneau tree
 		JPanel tree_panel = new JPanel();
-		tree_panel.setPreferredSize(new Dimension(200,180));
+		tree_panel.setPreferredSize(new Dimension(StyleSheet.PANEL_WIDTH,180));
 
 
 		this.setLayout(new BorderLayout());
@@ -156,7 +164,8 @@ public class AlgoTreePanel extends JPanel implements Observer{
 			AImageAlgo aia=(AImageAlgo)obj;
 			DefaultMutableTreeNode rootnode=(DefaultMutableTreeNode)_model.getRoot();
 			_model.insertNodeInto( new DefaultMutableTreeNode(aia),rootnode, 
-					rootnode.getChildCount()-1);
+					rootnode.getChildCount());
+			_tree.setSelectionInterval(rootnode.getChildCount()-1,rootnode.getChildCount());
 			return;
 		}
 		catch(ClassCastException e)

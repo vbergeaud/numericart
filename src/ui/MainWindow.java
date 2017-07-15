@@ -68,12 +68,12 @@ public class MainWindow extends JFrame implements Observer{
 
 		_split_global=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, _sp,_split_right);
 
-		_sp.setPreferredSize(new Dimension(1400,1400));
-		_split_global.setDividerLocation(1400);
-		_split_right.setDividerLocation(300);
-		_atp.setPreferredSize(new Dimension(300,300));
+		_sp.setPreferredSize(new Dimension(StyleSheet.SCREENVIEW_WIDTH,StyleSheet.TOTAL_HEIGHT));
+		_split_global.setDividerLocation(StyleSheet.SCREENVIEW_WIDTH);
+		_split_right.setDividerLocation(StyleSheet.TREE_HEIGHT);
+		_atp.setPreferredSize(new Dimension(StyleSheet.PANEL_WIDTH,StyleSheet.TREE_HEIGHT));
 		this.getContentPane().add(_split_global,BorderLayout.CENTER);
-		this.setSize(1700, 1400);
+		this.setSize(StyleSheet.PANEL_WIDTH+StyleSheet.SCREENVIEW_WIDTH, StyleSheet.TOTAL_HEIGHT);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
@@ -84,6 +84,7 @@ public class MainWindow extends JFrame implements Observer{
 	@Override
 	public void update(Object obj) {
 		int loc = _split_global.getDividerLocation();
+		int loc2=_split_right.getDividerLocation();
 		System.out.println("reecriture panneaux");
 		AlgoTree at=AlgoTree.getInstance();
 		_apa=AParameterPanelFactory.buildAParameterPanel(at.getCurrentAlgo());
@@ -92,6 +93,7 @@ public class MainWindow extends JFrame implements Observer{
 		at.getCurrentAlgo().getModel().addObserver(_sp);
 		_split_global.setLeftComponent(_sp);
 		_split_global.setDividerLocation(loc);
+		_split_right.setDividerLocation(loc2);
 		_split_right.repaint();
 
 

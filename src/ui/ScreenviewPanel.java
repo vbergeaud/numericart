@@ -22,7 +22,7 @@ public class ScreenviewPanel extends JPanel implements Observer{
 	public ScreenviewPanel(AImageAlgo a)
 	{
 		_aia=a;
-		super.setPreferredSize(new Dimension(800,800));
+		super.setPreferredSize(new Dimension(StyleSheet.SCREENVIEW_WIDTH,StyleSheet.TOTAL_HEIGHT));
 		this.addMouseWheelListener(new MouseWheelListener()
 		{
 
@@ -39,9 +39,53 @@ public class ScreenviewPanel extends JPanel implements Observer{
 			
 			
 		});
+		this.addMouseListener(new MouseListener()
+		{
+			int ix_before;
+			int iy_before;
+			boolean noshift=false;
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+			
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				noshift=false;
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				noshift=true;
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				ix_before=arg0.getX();
+				iy_before=arg0.getY();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if (noshift) return;
+				
+				int ix=arg0.getX();
+				int iy=arg0.getY();
+				double xl=-(double)(ix-ix_before)/(double)(ScreenviewPanel.this.getWidth());
+				double yl=-(double)(iy-iy_before)/(double)(ScreenviewPanel.this.getHeight());
+				_aia.shift(xl,yl);
+			}
+			
+		});
 	}
 	protected void paintComponent(Graphics g)
 	{
+		
 		BufferedImage bi = _aia.createImage();
 		g.drawImage(bi,1,1,this);
 	}

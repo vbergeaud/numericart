@@ -69,7 +69,7 @@ public class FractalCommandPanel extends AParameterPanel implements Observer {
 		bv.add(js1);
 		bv.add(Box.createRigidArea(new Dimension(10,10)));
 		bv.add(js2);
-		this.setPreferredSize(new Dimension(200,800));
+		this.setPreferredSize(new Dimension(StyleSheet.PANEL_WIDTH,StyleSheet.CONTROL_HEIGHT));
 		this.add(bv);
 		this.setVisible(true);
 	}

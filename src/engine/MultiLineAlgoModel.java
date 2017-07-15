@@ -35,7 +35,7 @@ public class MultiLineAlgoModel extends AAlgoModel{
 	public void setSpacing(double s)
 	{
 		_spacing=s;
-		notifyObserver("go");
+		notifyObserver("spacing");
 	}
 	public Line getCurrentLine()
 	{
